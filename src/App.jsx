@@ -8,14 +8,6 @@ const todoList = [
   { id: '3', name: "washing dishes", completed: false },
 ];
 
-// class Todos extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       todos
-//     };
-//   }
-// }
 function Todos(props) {
   const [todos, setTodos] = useState(todoList);
   const markTodo = (id, isComplete) => event => {
@@ -39,7 +31,53 @@ function Todos(props) {
   )
 }
 
-ReactDOM.render(
-  <Todos />,
+function Counter() {
+  const [count, setCount] = useState(0);
+  const increment = event => setCount(count + 1);
+  const decrement = event => setCount(count - 1);
+  return (
+    <div>
+      The count is {count}
+      <button onClick={increment}>increment</button>
+      <button onClick={decrement}>decrement</button>
+    </div>
+  )
+}
+
+function Form() {
+  const [formValues, setFormValues] = useState({
+    fname: '',
+    lname: '',
+  });
+  const onValueChange = event => {
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.value,
+    })
+  }
+  const onFormSubmit = event => {
+    event.preventDefault();
+    alert(`submitting ${formValues.lname}, ${formValues.fname}`)
+  }
+  return (
+    <form onSubmit={onFormSubmit}>
+      <label>first name
+        <input value={formValues.fname} onChange={onValueChange} name='fname' />
+      </label>
+
+      <label>
+        <input value={formValues.lname} onChange={onValueChange} name='lname' />
+      </label>
+
+      <button>submit</button>
+    </form>
+  )
+}
+
+ReactDOM.render(<>
+  <Form />
+  <Counter />
+  <Todos />
+</>,
   document.querySelector('#target'),
 );
