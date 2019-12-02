@@ -28,14 +28,14 @@ export default class Counter extends Component {
   }
 
   increment = () => {
-    this.setState({
+    this.setState(oldState => ({
       // what slices do I want to change?
       // whatever slices need changing add below
-      count: this.state.count + 1,
-    });
-    this.setState({
-      count: this.state.count + 2,
-    });
+      count: oldState.count + 1,
+    }));
+    this.setState(st => ({
+      count: st.count + 2,
+    }));
   }
 
   decrement() {
