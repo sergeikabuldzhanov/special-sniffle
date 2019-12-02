@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-export default function Form() {
+export default class {
+  // implement
+  // it's OK if you don't have time to change the methods
+}
+
+export function FormOld() {
   const [formValues, setFormValues] = useState({
     fname: '',
     lname: '',
