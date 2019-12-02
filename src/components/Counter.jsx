@@ -23,6 +23,7 @@ export default class Counter extends Component {
     super(props);
     this.state = {
       count: 0,
+      amIHappy: true,
     };
   }
 
@@ -30,7 +31,7 @@ export default class Counter extends Component {
     this.setState({
       // what slices do I want to change?
       // whatever slices need changing add below
-      count: 10000,
+      count: this.state.count + 1,
     });
   }
 
