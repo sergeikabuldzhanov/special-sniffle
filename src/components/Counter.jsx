@@ -25,6 +25,7 @@ export default class Counter extends Component {
       count: 0,
       amIHappy: true,
     };
+    this.decrement = this.decrement.bind(this);
   }
 
   increment = () => {
@@ -33,13 +34,15 @@ export default class Counter extends Component {
       // whatever slices need changing add below
       count: oldState.count + 1,
     }));
-    this.setState(st => ({
-      count: st.count + 2,
-    }));
+    // this.setState(st => ({
+    //   count: st.count + 2,
+    // }));
   }
 
   decrement() {
-
+    this.setState(oldState => ({
+      count: oldState.count - 1,
+    }));
   }
 
   render() {
