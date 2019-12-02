@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 
-export default function Counter() {
+export function CounterOld() {
   const [count, setCount] = useState(0);
   const increment = event => {
     setCount(count + 1);
   };
   const decrement = event => {
-    setCount(count - 1);
+    setCount(currentCount => currentCount - 1);
   };
   return (
     <div className='component'>
@@ -16,3 +16,7 @@ export default function Counter() {
     </div>
   );
 }
+
+export default class Counter extends Component {
+
+};
