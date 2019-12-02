@@ -26,6 +26,18 @@ export default class Counter extends Component {
     };
   }
 
+  increment = () => {
+    this.setState({
+      // what slices do I want to change?
+      // whatever slices need changing add below
+      count: 10000,
+    });
+  }
+
+  decrement() {
+
+  }
+
   render() {
     return (
       <div className='component'>
