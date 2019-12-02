@@ -4,7 +4,7 @@ import axios from 'axios';
 const fruitsApi = 'http://localhost:4000/market/fruits';
 const meatsApi = 'http://localhost:4000/market/meats';
 
-function Market() {
+export default function Market() {
   const [stock, setStock] = useState({
     fruits: [],
     meats: [],
@@ -18,6 +18,7 @@ function Market() {
   useEffect(() => {
     const fruitsPromise = axios.get(fruitsApi);
     const meatsPromise = axios.get(meatsApi);
+
     Promise.all([fruitsPromise, meatsPromise])
       .then(([fruitsAxiosRes, meatsAxiosRes]) => {
         setStock({
@@ -29,31 +30,27 @@ function Market() {
 
   return (
     <div className="component">
-      <Fruits fruits={stock.fruits} addToCart={addToCart} />
-      <Fruits fruits={stock.meats} addToCart={addToCart} />
+      <ListOfItems items={stock.fruits} addToCart={addToCart} />
+      <ListOfItems items={stock.meats} addToCart={addToCart} />
       <Cart items={cart} />
     </div>
   );
 }
 
-export default Market;
-
-
 function Cart(props) {
-  const { items } = props;
   return (
     <>
       <h5>Cart:</h5>
       {
-        items.length
-          ? items.map((item, idx) => <div key={idx}>{item}</div>)
+        props.items.length
+          ? props.items.map((item, idx) => <div key={idx}>{item}</div>)
           : <div>Nothing in the cart. Sad!</div>
       }
     </>
   );
 }
 
-function Fruit(props) {
+function Item(props) {
   const { name, addToCart } = props;
   return (
     <div>
@@ -63,16 +60,16 @@ function Fruit(props) {
   );
 }
 
-function Fruits(props) {
-  const { fruits, addToCart } = props;
+function ListOfItems(props) {
+  const { items, addToCart } = props;
   return (
     <>
       {
-        fruits.map(
-          (fruitName) => (
-            <Fruit
-              key={fruitName}
-              name={fruitName}
+        items.map(
+          (itemName) => (
+            <Item
+              key={itemName}
+              name={itemName}
               addToCart={addToCart}
             />
           ))
