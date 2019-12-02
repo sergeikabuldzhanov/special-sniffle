@@ -25,6 +25,7 @@ export default class Counter extends Component {
       count: 0,
       amIHappy: true,
     };
+    // gotcha 1, with "traditional" methods
     this.decrement = this.decrement.bind(this);
   }
 
@@ -39,7 +40,7 @@ export default class Counter extends Component {
     // }));
   }
 
-  decrement() {
+  decrement() { // this is a "traditional method"
     this.setState(oldState => ({
       count: oldState.count - 1,
     }));
@@ -48,6 +49,7 @@ export default class Counter extends Component {
   render() {
     return (
       <div className='component'>
+        {this.props.children} {this.props.name}!
         The count is {this.state.count}
         <button onClick={this.increment}>increment</button>
         <button onClick={this.decrement}>decrement</button>

@@ -8,7 +8,9 @@ import Market from './components/Market';
 import './App.less';
 
 ReactDOM.render(<>
-  <Counter />
+  <Counter name='Abel'>
+    Hello
+  </Counter>
   <Form />
   <Todos />
   <Market />
